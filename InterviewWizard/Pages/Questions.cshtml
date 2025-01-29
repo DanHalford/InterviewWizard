@@ -1,0 +1,36 @@
+﻿@page "/questions/{id}"
+@model InterviewWizard.Pages.QuestionsModel
+@{
+ViewData["Title"] = "Questions";
+}
+<div class="d-flex container">
+    <div class="d-flex flex-column col-12 col-lg-10">
+        <div class="display-6 fw-100 py-3">Question @Model.Id</div>
+        <div class="pb-1 fs-5 fw-300">@Model.QuestionText</div>
+        <!--
+        <div class="pb-3">
+            <button type="button" class="btn btn-link p-0 me-1" aria-controls="button" aria-label="Rate the question as 'good'" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="iw-tooltip" data-bs-title="Good question"><i class="bi bi-hand-thumbs-up"></i></button>
+            <button type="button" class="btn btn-link p-0 me-1" aria-controls="button" aria-label="Rate the question as 'poor'" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="iw-tooltip" data-bs-title="Poor question"><i class="bi bi-hand-thumbs-down"></i></button>
+            <button type="button" class="btn btn-link p-0 me-1" aria-controls="button" aria-label="Flag the question as 'inappropriate'" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="iw-tooltip" data-bs-title="Report inappropriate content"><i class="bi bi-flag"></i></button>
+        </div>
+        -->
+        <div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Answer" id="txtAnswer" rows="5" style="height: 300px;"></textarea>
+                <label for="txtAnswer">Answer</label>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="button" class="btn btn-primary iw-100 iw-transition" data-question-number="@Model.Id" id="btnSaveAnswer">Save</button>
+                <button type="button" class="btn btn-primary iw-100 disabled d-none" id="btnSaving"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Saving...</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        const QuestionId = '@Model.QuestionId';
+        gtag('event', 'question_viewed', {'question-number': QuestionId})
+    </script>
+    <script src="/js/iw-questions.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,24 @@
+﻿@page "/launch"
+@model InterviewWizard.Pages.LaunchModel
+@{
+    ViewData["Title"] = "Launch";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-9">
+            <div class="mb-3">
+                <h1>Out of Credits</h1>
+            </div>
+            <div class="mb-3">
+                <p>During <strong>Interview Wizard</strong>'s launch phase, we have restricted the number of free uses of the system in order to manage load. We are in the process of monetising the platform, but the option to purchase more credits has not yet been finalised.</p>
+                <p>However, if you are using <strong>Interview Wizard</strong> and find it useful, or are evaluating the platform professionally for use within a recruitment or talent acquisition team, please <a href="/contact">drop us a line</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        gtag('event', 'out_of_credits', {});
+    </script>
+}

@@ -1,0 +1,179 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Welcome to Interview Wizard";
+}
+
+<div class="container">
+    <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+        <div class="align-self-center">
+            <div class="iw-indexpanel-text">
+                <h1 class="display-3 fw-500">Welcome to <span>Interview Wizard</span></h1>
+                <h2 class="h5 fw-200 my-4 lh-base">Interview Wizard uses AI to create personalised, customised, practice interview questions using your CV and a position description or job advertisement.</h2>
+                <div class="text-center">
+                    <a type="button" class="btn btn-lg btn-primary" href="/register">Get Started For Free</a>
+                </div>
+            </div>
+        </div>
+        <div class="iw-indexpanel-image col-lg-6 m-3 m-lg-0 ms-lg-3">
+            <img src="/img/index/iw-frontpage-1.webp" class="img-fluid" alt="Graphic showing a job advertisement and a CV" loading="lazy" />
+        </div>
+    </div>
+    <div class="row iw-indexpanel justify-content-lg-center">
+        <div class="col-12 col-lg-8">
+            <h2 class="fw-200 h3 text-start text-lg-center">Interview Wizard looks at your experience and the requirements of the position to ask meaningful, insightful, questions - just as in a real interview.</h2>
+        </div>
+    </div>
+    <!-- Large viewports only -->
+    <div class="row flex-wrap iw-indexpanel d-none d-lg-flex gx-4">
+        <div class="col-4">
+            <div class="iw-indexpanel-image">
+                <img src="/img/index/iw-frontpage-2-question-1.webp" alt="A graphic of a Interview Wizard question" loading="lazy" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="iw-indexpanel-image">
+                <img src="/img/index/iw-frontpage-2-question-2.webp" alt="A graphic of a Interview Wizard question" loading="lazy" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="iw-indexpanel-image">
+                <img src="/img/index/iw-frontpage-2-question-3.webp" alt="A graphic of a Interview Wizard question" loading="lazy" />
+            </div>
+        </div>
+    </div>
+    <!-- End large viewports only-->
+    <!-- Small viewports only -->
+    <div class="row d-lg-none iw-indexpanel">
+        <div class="iw-indexpanel-image">
+            <img src="/img/index/iw-frontpage-2.webp"class="img-fluid" alt="A graphic of some Interview Wizard questions" loading="lazy" />
+        </div>
+    </div>
+    <!-- End small viewports only -->
+    <div class="row iw-indexpanel justify-content-lg-center">
+        <div class="col-12 col-lg-8">
+            <h2 class="fw-200 h3 text-start text-lg-center">Interview Wizard then reviews your responses and provides helpful suggestions on how they might be improved.</h2>
+        </div>
+    </div>
+    <!-- Large viewports only -->
+    <div class="row flex-wrap iw-indexpanel d-none d-lg-flex gx-4">
+        <div class="col-5">
+            <div class="iw-indexpanel-image">
+                <img src="/img/index/iw-frontpage-3-answer.webp" alt="A sample answer to an Interview Wizard question" loading="lazy" />
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="iw-indexpanel-image">
+                <img src="/img/index/iw-frontpage-3-response.webp" alt="Sample feedback to an Interview Wizard answer" loading="lazy" />
+            </div>
+        </div>
+    </div>
+    <!-- End large viewports only-->
+    <!-- Small viewports only -->
+    <div class="row d-lg-none iw-indexpanel">
+        <div class="iw-indexpanel-image">
+            <img src="/img/index/iw-frontpage-3.webp" class="img-fluid" alt="Interview Wizard feedback to a sample answer" loading="lazy" />
+        </div>
+    </div>
+    <!-- End small viewports only -->
+    <div class="mt-3 justify-content-center d-flex">
+        <div>
+            <a href="/register" class="btn btn-lg btn-primary">Ace your next interview</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid background-secondary mt-4 py-4 py-lg-5 mt-lg-5">
+    <div class="container" role="list">
+        <div class="iw-indexpanel container text-start text-lg-center mb-lg-5 mb-3">
+            <h2 class="display-6 fw-500">How to use Interview Wizard</h2>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">1</div>
+                <div class="flex-fill">
+                    <h3>Import your CV</h3>
+                    <p>You can upload a Word document or just copy and paste your CV contents.</p>
+                    <p>The more details you provide, the more tailored your interview questions will be.</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-1.webp" class="img-fluid" alt="A screenshot of how to upload your CV" />
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">2</div>
+                <div class="flex-fill">
+                    <h3>Import the position description or job advertisement</h3>
+                    <p>You can upload a Word document, copy and paste, or import directly from a job posting on Seek&trade;.</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-2.webp" class="img-fluid" alt="A screenshot of how to upload a position description or job advert" />
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">3</div>
+                <div class="flex-fill">
+                    <h3>Prepare your questions</h3>
+                    <p>Just click <strong>Generate Questions</strong> and let our Wizards prepare customised practice interview questions, tailored to your experience and the position you're applying for.</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-3.webp" class="img-fluid" alt="A screenshot of the Generate Questions button" />
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">4</div>
+                <div class="flex-fill">
+                    <h3>Answer the questions</h3>
+                    <p>You'll be given three questions. Take your time and think about the answer; there's no time limit!</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-4.webp" class="img-fluid" alt="A screenshot of an Interview Wizard question" />
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">5</div>
+                <div class="flex-fill">
+                    <h3>Read question feedback</h3>
+                    <p>Our wizards will evaluate your answers and provide individual feedback on what was good about each answer and how it could be improved.</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-5.webp" class="img-fluid" alt="A screenshot of a piece of feedback to an Interview Wizard answer" />
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-lg-row iw-indexpanel">
+            <div class="d-flex col-12 col-lg-6 align-self-center pe-lg-4">
+                <div class="step-number-box" role="listitem">6</div>
+                <div class="flex-fill">
+                    <h3>Review interview feedback</h3>
+                    <p>We finish by providing feedback on the interview as a whole, outlining where you've performed well and what areas you might want to concentrate on.</p>
+                    <p>Click <strong>Try some more questions</strong> to have another go!</p>
+                </div>
+            </div>
+            <div class="iw-indexpanel-image col-12 col-lg-6">
+                <img src="/img/index/iw-frontpage-howto-6.webp" class="img-fluid" alt="A screenshot of some final overall interview feedback" />
+            </div>
+        </div>
+        <div class="mt-3 justify-content-center d-flex">
+            <div>
+                <a href="/register" class="btn btn-lg btn-primary">Try Interview Wizard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4 py-4 pt-lg-0 mt-lg-5">
+    <div class="iw-indexpanel text-start text-lg-center mb-lg-5 mb-3">
+        <h2 class="display-6 fw-500">Subscriptions and Pricing</h2>
+    </div>
+    <div class="iw-indexpanel mb-lg-5 mb-3">
+        <p>During our launch phase, we are not offering any subscription or paid usage credits. Instead, you'll receive five credits upon signing up which are used to generate customised practice questions and personalised feedback about the answers given.</p>
+        <p>If you require more, or are interested in the service for professional purposes to complement your recruitment or talent acquisition teams, please <a href="/contact">get it touch</a>.</p>
+    </div>
+</div>

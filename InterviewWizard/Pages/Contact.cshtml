@@ -1,0 +1,44 @@
+﻿@page "/contact"
+@using AspNetCore.ReCaptcha
+@using Microsoft.Extensions.Options
+@inject IOptions<ReCaptchaSettings> ReCaptchaSettings
+@model InterviewWizard.Pages.ContactModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 align-self-center">
+            <div class="mb-3">
+                <h1>Hello. Need to speak to us?</h1>
+            </div>
+            <form method="post" action="">
+            <div class="mb-3">
+                <label for="EmailAddress" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" required>
+            </div>
+            <div class="mb-3">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name" name="Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="Message" class="form-label">Message</label>
+                <textarea class="form-control" id="Message" name="Message" rows="6" required></textarea>
+            </div>
+            <div class="mb-3">
+                <recaptcha />
+            </div>
+            <div class="d-flex mb-3">
+                <div class="ms-auto">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-6 iw-panel d-none d-md-block align-self-center">
+            <div class="text-end">
+                <img src="/img/400/iw_wizard_1_400.webp" alt="A small android wizard with glowing orange eyes and a giant orange hat sitting cross-legged on the floor, writing on a scroll" />
+            </div>
+        </div>
+    </div>
+</div>

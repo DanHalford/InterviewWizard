@@ -1,0 +1,157 @@
+﻿@inject IHttpContextAccessor _httpContextAccessor
+@inject ApplicationDbContext _dbcontext
+@using InterviewWizard.Helpers
+@using InterviewWizard.Models.Session
+@{
+    bool isLoggedIn = false;
+    string emailAddress = string.Empty;
+    string? sessionKey = _httpContextAccessor.HttpContext?.Session.GetString("SessionKey");
+    if (string.IsNullOrEmpty(sessionKey) == false)
+    {
+        SessionService ss = new SessionService(_dbcontext, _httpContextAccessor);
+        Session thisSession = ss.GetSessionAsync(sessionKey).Result;
+        if (thisSession != null)
+        {
+            Models.User.User thisUser = thisSession.User;
+            if (thisUser != null)
+            {
+                isLoggedIn = true;
+                emailAddress = thisUser.Email;
+            }
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] \\ Interview Wizard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/iw-core.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <meta name="description" content="Ace your next interview with Interview Wizard AI! Get customized interview questions and feedback based on your CV and job target.">
+    <meta name="keywords" content="ai interview practice, interview preparation, custom interview questions, job interview practice, CV-based interview prep">
+    <meta property="og:image" content="https://interviewwizard.ai/img/800/iw_wizard_1_800.webp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Interview Wizard" />
+    <meta property="og:description" content="Ace your next interview with Interview Wizard AI // Get customized practice interview questions and feedback to help you prepare" />
+    <meta property="og:url" content="https://interviewwizard.ai" />
+    <meta property="article:author" content="Dan Halford" />
+    @if (!Html.IsDebug()) {
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JQ5HJM7SX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-7JQ5HJM7SX');
+    </script>
+    }
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column min-vh-100 p-0">
+        <header id="headProfile">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                <div class="container">
+                    <div class="d-flex justify-content-start">
+                        <a class="navbar-brand" href="/" aria-label="Interview Wizard">
+                            <svg class="iw-logo-hat" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 450.47 513.82">
+                                <polygon points="400.42 377.1 371.81 298.98 182.43 228.46 163.67 281.72 400.42 377.1" stroke-width="0" fill="currentColor" />
+                                <polygon points="134.89 363.41 156.25 302.78 409.82 402.78 436.02 474.34 134.89 363.41" stroke-width="0" fill="currentColor" />
+                                <polygon points="126.03 388.56 81.9 513.82 450.47 513.82 445.19 499.39 126.03 388.56" stroke-width="0" fill="currentColor" />
+                                <polygon points="361.87 271.82 262.35 0 0 174.05 220.76 119.66 190.16 206.5 361.87 271.82" stroke-width="0" fill="currentColor" />
+                            </svg>
+                            <img class="iw-logo-text" src="/img/iw-logo.webp" alt="Logo: Interview Wizard" height="34" />
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-end justify-content-lg-center">
+                        @if (isLoggedIn == true)
+                        {
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="/documents" class="nav-link" aria-label="Get started">Get started</a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="headerNav">
+                                @if (isLoggedIn == true)
+                                {
+                                <a class="btn btn-primary" href="/profile" aria-label="Account profile">Profile</a>
+                                <a class="btn btn-light ms-1 ms-lg-3" href="/logout">Log Out</a>
+
+                                }
+                                else
+                                {
+                                <a class="btn btn-primary" href="/register">Sign Up</a>
+                                <a class="btn btn-light ms-1 ms-lg-3" href="/login">Login</a>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main" class="flex-shrink-0">
+            @RenderBody()
+        </main>
+
+        <footer class="footer-custom py-lg-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 order-lg-1 align-self-center">
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#footerNav" aria-controls="footerNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="footerNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/contact" aria-label="Contact Us">Contact Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/about" aria-label="About">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/terms-of-service" aria-label="Terms of Service">Terms of Service</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/privacy" aria-label="Privacy">Privacy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-6 order-lg-2 align-self-center">
+                        <div class="ms-auto">
+                            <!--
+                            <a href="https://www.instagram.com/interview.wizard/" class="social-icon" aria-label="Instagram">
+                                <i class="bi bi-instagram" style="font-size: 2rem;"></i>
+                            </a>
+                            -->
+                            <a href="https://www.linkedin.com/in/danhalford/" class="social-icon" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/iw-core.js" asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Components", required: false)
+       
+    </div>
+</body>
+</html>

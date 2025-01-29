@@ -1,0 +1,46 @@
+﻿@page "/register"
+@using AspNetCore.ReCaptcha
+@using Microsoft.Extensions.Options
+@inject IOptions<ReCaptchaSettings> ReCaptchaSettings
+@model InterviewWizard.Pages.RegisterModel
+@{
+ViewData["Title"] = "Register";
+}
+<div class="container">
+    <h1>Sign up</h1>
+    <h3>It's quick, easy, and free!</h3>
+        <div class="col-12 col-md-9">
+            <form id="frmRegister" method="post">
+                <div class="mb-3">
+                    <label for="EmailAddress" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" data-iw-validate required>
+                    <div id="lblInvalidEmail" class="invalid-feedback">Please provide a valid email address.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="Password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Password" name="Password" data-iw-validate required>
+                    <div class="invalid-feedback">Your password must be at least 14 characters long and not contain any Justin Bieber lyrics</div>
+                </div>
+                <div class="mb-3">
+                    <label for="ConfirmPassword" class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" data-iw-validate required>
+                    <div class="invalid-feedback">Your passwords do not match. Please try again.</div>
+                </div>
+                <div class="mb-3">
+                    <recaptcha />
+                </div>
+                <div class="mb-3">We encourage you to read our <a href="/terms-of-service" aria-label="Terms of Service">Terms of Service</a> and <a href="/privacy" aria-label="Privacy Policy">Privacy Policy</a> to understand what we do with the data you share with us.</div>
+                <div class="d-flex mb-3">
+                    <div class="ms-auto">
+                        <button id="cmdSubmit" type="submit" class="btn btn-primary iw-100 iw-transition">Sign up</button>
+                    </div>
+                </div>
+            <div class="mb-3">Are you registering to evaluate this service for professional use within a recruitment or talent acquisition team? <a href="/contact">Drop us a line</a> and let us know what you're planning. We have some industry-specific enhancements under development we'd love to discuss.</div>
+            </form>
+        </div>
+    <div id="lblStatusAlert" class="visually-hidden"></div>
+</div>
+
+@section Scripts {
+    <script src="/js/iw-register.js" asp-append-version="true"></script>
+}

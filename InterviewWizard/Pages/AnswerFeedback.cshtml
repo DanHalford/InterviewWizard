@@ -1,0 +1,46 @@
+﻿@page "/answerreview/{id}"
+@model InterviewWizard.Pages.AnswerFeedbackModel
+@using InterviewWizard.Models.Session
+@{
+    ViewData["Title"] = "Answer Review and Feedback";
+    Question question = Model.QuestionObject;
+    var nextQuestion = question.QuestionNumber == 1 || question.QuestionNumber == 2 ? (question.QuestionNumber + 1).ToString() : "review";
+    var buttonText = question.QuestionNumber == 1 || question.QuestionNumber == 2 ? "Next" : "Review";
+}
+<div class="container">
+    <div class="d-flex container">
+        <div class="d-flex flex-column col-10">
+            <div class="display-6 fw-100 py-3">Question @question.QuestionNumber</div>
+            <div class="pb-1 fs-5 fw-300">
+                <strong>We asked:</strong>
+                <p>@question.QuestionText</p>
+            </div>
+            <div class="pb-1 fs-5 fw-300">
+                <strong>You answered:</strong>
+                <p><i>@question.AnswerText</i></p>
+            </div>
+            <div class="pb-1 row flex-row pt-4">
+                <div class="col-1 iw-rating-panel align-self-center">
+                    <span class="iw-rating">@question.AnswerRating</span>
+                    <div class="diagonal-line"></div>
+                    <div class="out-of">10</div>
+                </div>
+                <div class="col-11 fs-5 fw-300">
+                    @question.AnswerFeedback
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        <div class="col-10 mt-4 text-end">
+            <button id="btnNext" type="button" class="btn btn-primary iw-100 iw-transition" data-next-answer="@nextQuestion">Next <i class="bi bi-arrow-right"></i></button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/iw-answerfeedback.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        gtag('event', 'feedback_viewed', { 'question_number': @question.QuestionNumber });
+    </script>
+}

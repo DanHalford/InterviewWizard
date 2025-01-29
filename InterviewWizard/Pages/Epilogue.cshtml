@@ -1,0 +1,26 @@
+﻿@page "/epilogue"
+@model InterviewWizard.Pages.EpilogueModel
+@{
+    ViewData["Title"] = "Interview Feedback";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 align-self-center">
+            <div class="mb-3">
+                <h1>Interview Feedback</h1>
+            </div>
+            <div class="mb-3 fs-5 fw-300">
+                @Model.Feedback
+            </div>
+            <div class="mb-3 fs-5">
+                <a href="/documents" class="btn btn-lg btn-primary">Try some more questions</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        gtag('event', 'epilogue_viewed', {});
+    </script>
+}

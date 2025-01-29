@@ -1,0 +1,4 @@
+﻿name: Helmut Kohl
+jobTitle: Transport Platforms Operator
+
+Take the name and job title given. In a business casual style, write a sentence similar to "Hi Helmut, please hold for a moment while we write some questions to help you prepare for your Transport Platforms Operator interview."

@@ -1,0 +1,21 @@
+﻿@page "/logout"
+@model InterviewWizard.Pages.LogoutModel
+@{
+ViewData["Title"] = "Logout";
+int imgNumber = new Random().Next(1, 5);
+string goodbyeImageUrl = $"iw_wizard_goodbye_{imgNumber.ToString("00")}_400.webp";
+}
+<div class="container">
+    <div class="d-flex flex-column flex-lg-row">
+        <div class="col-12 col-lg-6 align-self-center">
+            <h1>Logged out</h1>
+            <p>You have been logged out. All uploaded CVs, position descriptions, questions and answers have been deleted.</p>
+            <p>Thank you for using <strong>Interview Wizard</strong>.</p>
+        </div>
+        <div class="iw-panel col-12 col-lg-6 mt-3 m-lg-0">
+            <div class="text-center text-lg-end">
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@page "/preparing-questions"
+@model InterviewWizard.Pages.QuestionsPreparingModel
+@{
+    ViewData["Title"] = "Preparing Questions";
+    string[] waitTextOptions = new string[] {
+        "Hold on while we generate your personalised questions",
+        "Please wait as we create your customised questions",
+        "Hang tight, we're preparing your personalised questions now",
+        "Just a moment while we generate your customised questions",
+        "Just a moment while we tailor questions to your CV and position"
+    };
+    int textNumber = new Random().Next(0, waitTextOptions.Length);
+    string waitText = waitTextOptions[textNumber];
+    int vidNumber = new Random().Next(1, 3);
+    string vidName = $"iw_wizards_processing_{vidNumber}.mp4";
+}
+<div class="container">
+    <div class="d-flex align-self-center flex-grow-1">
+        <div class="d-flex row align-self-center">
+            <div class="iw-panel d-flex justify-content-center col-10 mx-auto p-0">
+                <div>
+                    <video class="m-4" src="/vid/@vidName" autoplay loop muted disableremoteplayback disablepictureinpicture x-webkit-airplay="deny"></video>
+                </div>
+                <div class="iw-panel-text display-6 align-self-center display-inline p-4">
+                    @waitText
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="/js/iw-questionspreparing.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        gtag('event', 'preparing_questions', {});
+    </script>
+}

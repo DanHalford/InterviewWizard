@@ -1,0 +1,87 @@
+﻿@page "/error"
+@using InterviewWizard.Helpers
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+    string? error = Request.Query["err"];
+    string errorDescription = string.Empty;
+    switch (error)
+    {
+        case "404":
+            ViewData["Title"] = "Page Not Found";
+            break;
+        case "500":
+            ViewData["Title"] = "Server Error";
+            break;
+        case "sessionnotfound":
+            ViewData["Title"] = "Session Not Found";
+            errorDescription = "Your login session has expired or the session cannot be found. Please log in and try again.";
+            break;
+        case "usernotfound":
+            ViewData["Title"] = "Session Not Found";
+            errorDescription = "Your login session has expired or the session cannot be found. Please log in and try again.";
+            break;
+        case "questionnotfound":
+            ViewData["Title"] = "User Not Found";
+            errorDescription = "An error has occurred in the Interview Wizard platform. Please log off and log back in.";
+            break;
+        case "invalidtoken":
+            ViewData["Title"] = "Invalid Registration Token";
+            errorDescription = "An error occurred retrieving the account registration token. Please try again.";
+            break;
+        case "preparequestions":
+            ViewData["Title"] = "Server Error";
+            errorDescription = "An error occurred preparing the interview questions. Please try again.";
+            break;
+        case "preparefeedback": 
+            ViewData["Title"] = "Server Error"; 
+            errorDescription = "An error occurred preparing the interview feedback. Please try again."; 
+            break;
+        case "resetpassowrd": 
+            ViewData["Title"] = "Server Error"; 
+            errorDescription = "An error occurred resetting your password. Please try again."; 
+            break;
+        case "createassistanterror": 
+            ViewData["Title"] = "Interview Wizard AI Error"; 
+            errorDescription = "An error occurred accessing the Interview Wizard AI model. This error is usually transitory. Please try again in a few minutes."; 
+            break;
+        case "profilenotfound":
+            ViewData["Title"] = "Profile Not Found";
+            errorDescription = "An error occurred retrieving your account profile. Please try again. If the problem persists, <a href=\"/contact\" aria-label=\"Contact us link\">contact us</a>.";
+            break;
+        case null:
+        default:
+        ViewData["Title"] = "Unknown Error";
+        errorDescription = "An unknown error has occurred. Please try again. If the problem persists, <a href=\"/contact\" aria-label=\"Contact us link\">contact us</a>.";
+        break;
+    }
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 align-self-center">
+            <div class="mb-3">
+                <h1>Error - @ViewData["Title"]</h1>
+            </div>
+            <div class="mb-3">
+                @Html.Raw(errorDescription)
+            </div>
+            @if (Model.ShowRequestId)
+            {
+                <div class="mb-3">
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </div>
+            }
+        </div>
+        <div class="col-6 iw-panel d-none d-md-block">
+            <div class="text-end">
+                <img src="/img/400/iw_brokenwizard_4_400.webp" alt="A confused and broken orange android mizard in a battered wizard hat, sitting dejectedly on the floor." />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        gtag('event', 'error', { 'code': '@error' });
+    </script>
+}

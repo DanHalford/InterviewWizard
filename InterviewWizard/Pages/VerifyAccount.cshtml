@@ -1,0 +1,60 @@
+﻿@page "/verify-account"
+@model InterviewWizard.Pages.VerifyAccountModel
+@{
+    ViewData["Title"] = "Account Verification";
+}
+@if (Model.showCodeBox == false)
+{
+    <div class="container">
+        @if (Model.response.Success == true)
+        {
+            <h1>Account verified</h1>
+            <p>@Model.response.Message</p>
+        }
+        else if (Model.response.Success == false)
+        {
+            <h1>Verification failed</h1>
+            <p>@Model.response.Message</p>
+        }
+    </div>
+} else
+{
+    <div class="container">
+        <h1>Verify your email address</h1>
+        <p>Please enter the six-digit code sent to your email.</p>
+        <div class="d-flex flex-row py-4">
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit1" autocomplete="off" />
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit2" autocomplete="off" />
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit3" autocomplete="off" />
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit4" autocomplete="off" />
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit5" autocomplete="off" />
+            <input type="text" class="form-control form-control-lg number-box" maxlength="1" id="txtDigit6" autocomplete="off" />
+            <input type="button" class="btn btn-primary btn-lg iw-100" id="btnVerify" value="Verify" data-iw-token="@Model._token" />
+            <button class="btn btn-primary btn-lg iw-100 d-none" type="button" id="btnWait" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span class="visually-hidden" role="status">Loading...</span>
+            </button>
+        </div>
+        @if (Model.response != null && Model.response.Success == false)
+        {
+            <div class="alert alert-danger">
+                <p>@Model.response.Message</p>
+            </div>
+        }
+        <p>Not received an email? Remember to check your junk mail or click to send another code.</p>
+    </div>
+    <form id="frmVerify" method="post">
+        <input id="txtToken" name="token" type="hidden" />
+        <input id="txtCode" name="code" type="hidden" />
+    </form>
+}
+
+@section Scripts {
+    <script src="/js/iw-verifyaccount.js" asp-append-version="true"></script>
+    @if (Model.showCodeBox == true)
+    {
+        <script type="text/javascript">
+            gtag('event', 'user_registered');
+        </script>
+    }
+}

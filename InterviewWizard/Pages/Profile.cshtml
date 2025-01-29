@@ -1,0 +1,171 @@
+﻿@page "/profile"
+@using InterviewWizard.Models.User
+@model InterviewWizard.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Account";
+    string email = Model._thisUser.Email;
+    SubscriptionType subscriptionType = Model._thisUser.SubscriptionType;
+    int creditBalance = Model._thisUser.Credits;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 align-self-center">
+            <h1>Account</h1>
+            <div class="mb-3">
+                <p>Here you can manage your account settings, including your email address and password.</p>
+            </div>
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email Address</label>
+                <div class="input-group">
+                    <input type="email" id="txtEmail" class="form-control" aria-label="Email address associated with account" value="@email" disabled />
+                    <button type="button" id="btnEmailEdit" class="btn btn-outline-primary" aria-label="Change email address" data-bs-toggle="modal" data-bs-target="#modEmail">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="txtPassword" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="password" id="txtPassword" class="form-control" aria-label="Account password" value="nottherealpassword" disabled />
+                    <button type="button" id="btnPasswordEdit" class="btn btn-outline-primary" aria-label="Change password" data-bs-toggle="modal" data-bs-target="#modPassword">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div>
+                    <label id="lblSubscriptionType" for="txtSubscripton" class="form-label">Account Type</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="txtSubscripton" class="form-control" aria-label="Interview Wizard subscription type" value="@subscriptionType" disabled />
+                    <button type="button" id="btnSubscriptionEdit" class="btn btn-outline-primary" aria-label="Change subscription" data-bs-toggle="modal" data-bs-target="#modSubscription">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div>
+                    <label id="lblCreditBalance" for="txtCreditBalance" class="form-label">Credits</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="txtCreditBalance" class="form-control" aria-label="Interview Wizard credit balance" value="@creditBalance" disabled />
+                    <button type="button" id="btnBuyCredits" class="btn btn-outline-primary" aria-label="Buy Credits" data-bs-toggle="modal" data-bs-target="#modBuyCredits">
+                        <i class="bi bi-bag"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <a href="/delete-account" class="btn btn-danger iw-200">Delete account</a>
+            </div>
+        </div>
+        <div class="iw-panel col-6 d-none d-md-block">
+            <div class="text-end">
+                <img src="/img/400/iw_wizard_filing_system_01_400.webp" alt="A robot wizard checking records" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/iw-profile.js" asp-append-version="true"></script>
+}
+
+@section Components {
+    <div class="modal fade iw-modal" id="modEmail" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container">
+                    <label for="txtEditEmail" class="form-label">New email address</label>
+                    <input type="email" class="form-control" id="txtEditEmail" value="@email" />
+                    <div id="lblEmailAlert" class="alert alert-danger d-none mt-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cmdSaveEmail" type="button" class="btn btn-primary iw-100">Save</button>
+                    <button id="cmdWaitEmail" type="button" class="btn btn-primary iw-100 disabled d-none">
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        <span class="visually-hidden" role="status">Loading...</span>
+                    </button>
+                    <button id="cmdSuccessEmail" type="button" class="btn btn-success iw-100 d-none" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade iw-modal" id="modPassword" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container">
+                    <label for="txtEditPassword" class="form-label">New password</label>
+                    <input type="password" class="form-control" id="txtEditPassword" value="" />
+                    <label for="txtConfirmPassword" class="form-label mt-3">Confirm password</label>
+                    <input type="password" class="form-control" id="txtConfirmPassword" value="" />
+                    <div id="lblPasswordAlert" class="alert alert-danger d-none mt-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cmdSavePassword" type="button" class="btn btn-primary iw-100">Save</button>
+                    <button id="cmdWaitPassword" type="button" class="btn btn-primary iw-100 disabled d-none">
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        <span class="visually-hidden" role="status">Loading...</span>
+                    </button>
+                    <button id="cmdSuccessPassword" type="button" class="btn btn-success iw-100 d-none" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade iw-modal" id="modSubscription" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Subscription</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container">
+                    @if (subscriptionType == SubscriptionType.Founder)
+                    {
+                        <p>During a our launch phase, specially selected people have received <strong>Founder</strong> accounts, that are not subject to any usage limits of feature restrictions. Founder accounts also receive all new updates and features before they are released to the public.</p>
+                    } else
+                    {
+                        <p>During our launch and beta phases, we will only be offering free accounts with generous usage limits. This will evenutally move to a subscription model with <b>basic</b>, <b>premium</b> and <b>recruiter</b> subscription models.</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-primary iw-100" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade iw-modal" id="modBuyCredits" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buy Credits</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container">
+                    @if (subscriptionType == SubscriptionType.Founder)
+                    {
+                        <p>For founder accounts, credit usage is tracked but not enforced.</p>
+                    }
+                    else
+                    {
+                        <p>During our launch and beta phases, we have not yet enabled paid subscriptions or the purchase of additional credits. If you're actively using the service and would like more, please <a href="/contact">contact us</a>.</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary iw-100" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,9 @@
+﻿You provided me with three questions, and I have answered them. You have provided me a rating and feedback on each answer. Now provide me with an overall summary of my performance, and tips on how I can improve on an upcoming interview for the position described.
+
+Provide the rating and feedback as a JSON structure in the form:
+{
+  "feedback": "I think you could improve your answer by providing more examples."
+}
+
+Use Australian English spelling and grammar.
+Include no other commentary.

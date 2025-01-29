@@ -1,0 +1,35 @@
+﻿@page "/reviewing-answers"
+@model InterviewWizard.Pages.ReviewingAnswersModel
+@{
+    ViewData["Title"] = "Reviewing Answers";
+    string[] waitTextOptions = new string[] {
+        "Please wait as we analyse your responses and offer feedback",
+        "Hang tight, we're currently reviewing your answers and will provide feedback shortly",
+        "Just a moment while we evaluate your responses and prepare our feedback",
+        "Stay put as we go through your answers and get ready to share our feedback",
+        "Give us a little time to assess your answers and deliver our insights"
+    };
+    int textNumber = new Random().Next(0, waitTextOptions.Length);
+    string waitText = waitTextOptions[textNumber];
+    int vidNumber = new Random().Next(1, 3);
+    string vidName = $"iw_wizards_processing_{vidNumber}.mp4";
+}
+<div class="container">
+    <div class="d-flex align-self-center flex-grow-1">
+        <div class="d-flex row align-self-center">
+            <div class="iw-panel d-flex justify-content-center col-10 mx-auto p-0">
+                <div>
+                    <video class="m-4" src="/vid/@vidName" autoplay loop muted disableremoteplayback disablepictureinpicture x-webkit-airplay="deny"></video>
+                </div>
+                <div class="iw-panel-text display-6 align-self-center display-inline p-4">
+                    @waitText
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="/js/iw-reviewinganswers.js" asp-append-version="true"></script>
+}
